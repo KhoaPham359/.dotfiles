@@ -1,0 +1,127 @@
+window-rule {
+    geometry-corner-radius 20 // Set every window radius to 20
+    clip-to-geometry true
+}
+
+layer-rule {
+    match namespace="^noctalia-wallpaper*"
+    place-within-backdrop true
+}
+
+window-rule {
+    match app-id=r#"^thunar$"# title="^Rename*"
+    open-floating true
+}
+
+
+window-rule {
+    match app-id=r#"zen$"# title="^Picture-in-Picture$"
+    match app-id=r#"librewolf$"# title="^Picture-in-Picture$"
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+
+
+
+    match app-id=r#"^org-tlauncher-tlauncher-rmo-TLauncher$"#
+}
+
+window-rule {
+    match app-id=r#"^neovide$"#
+    match app-id=r#"^jetbrains-idea$"#
+    match app-id=r#"^codium$"#
+    match app-id=r#"^code$"#
+    match app-id=r#"^Eclipse$"#
+    
+    open-on-workspace "1"
+    default-column-width {proportion 0.9;}
+}
+
+window-rule {
+    match app-id=r#"zen$"#
+    match app-id=r#"firefox$"#
+    match app-id=r#"chromium$"#
+    match app-id=r#"librewolf$"#
+    match app-id=r#"google-chrome$"#
+
+    open-on-workspace "2"
+    // default-column-width {proportion 0.9;}
+    open-maximized true
+}
+
+// global window rule
+window-rule {
+    open-focused true
+}
+// Media
+window-rule {
+    match app-id=r#"^spotify$"#
+    open-floating true
+}
+window-rule {
+    match app-id=r#"^com.obsproject.Studio$"#
+    match app-id=r#"^vesktop$"#
+    open-on-workspace "4"
+}
+
+window-rule {
+    match app-id=r#"^kitty$"#
+    open-on-workspace "1"
+    default-column-width {proportion 0.5;}
+}
+
+// Float rule
+window-rule {
+    // Eye of GNOME
+    match app-id=r#"^eog$"#
+    
+    match app-id=r#"^mpv$"#
+    
+    // Kruder
+    match app-id=r#"^org.kde.kruler$"#
+    
+    // Calculator
+    match app-id=r#"^org.gnome.Calculator"#
+
+    // Video downloader
+    match app-id=r#"^com.github.unrud.VideoDownloader$"#
+
+    // Network editor
+    match app-id=r#"^nm-connection-editor$"#
+    
+    // Resource monitor
+    match app-id=r#"^net.nokyan.Resources$"#
+    
+    match app-id=r#"^qt-sudo$"#
+    open-floating true
+}
+window-rule {
+    match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+    default-floating-position x=10 y=10 relative-to="bottom-right"
+}
+window-rule {
+    match app-id="steam" title=r#"^Sign in to Steam$"#
+    default-floating-position x=400 y=250 relative-to="top-left"
+}
+
+window-rule {
+    match app-id="org.kde.polkit-kde-authentication-agent-1"
+    block-out-from "screen-capture"
+}
+// Indicate screencasted windows with red colors.
+window-rule {
+    match is-window-cast-target=true
+    focus-ring {
+        active-color "#f38ba8"
+        inactive-color "#7d0d2d"
+    }
+    border {
+        inactive-color "#7d0d2d"
+    }
+    shadow {
+        color "#7d0d2d70"
+    }
+    tab-indicator {
+        active-color "#f38ba8"
+        inactive-color "#7d0d2d"
+    }
+}
