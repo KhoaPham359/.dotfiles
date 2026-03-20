@@ -10,12 +10,11 @@ binds {
 
     // ─── Applications ───
     Mod+Return                          hotkey-overlay-title="Open Terminal: Alacritty" { spawn "kitty"; }
-    // Mod+A                     hotkey-overlay-title="Open App Launcher: noctalia launcher" { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
-    Super+Shift+XF86TouchpadOff           repeat=false    { spawn-sh "qs -c noctalia-shell ipc call launcher toggle";}
-    Mod+B                               hotkey-overlay-title="Open Browser: firefox" { spawn "firefox"; }
+    Super+Shift+F23           repeat=false    { spawn-sh "qs -c noctalia-shell ipc call launcher toggle";}
+    Mod+B                               hotkey-overlay-title="Open Browser: firefox" { spawn "zen-browser"; }
     Mod+ALT+L                           hotkey-overlay-title="Lock Screen: noctalia lock" { spawn-sh "qs -c noctalia-shell ipc call lockScreen lock"; }
     Mod+Shift+Q                        hotkey-overlay-title="Session Menu: noctalia sessionMenu" { spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
-    Mod+V           hotkey-overlay-title="Launch clipboard"                         repeat=false    { spawn-sh "qs -c noctalia-shell ipc call launcher clipboard";}
+    Mod+V           hotkey-overlay-title="Launch clipboard"                         repeat=false    { spawn-sh "qs -c noctalia-shell ipc call plugin:clipper togglePanel";}
     Mod+I           hotkey-overlay-title="Settings: open noctalia-shell config"     repeat=false    { spawn-sh "qs -c noctalia-shell ipc call settings toggle";}
     Mod+Shift+I     hotkey-overlay-title="Settings: open niri config"               repeat=false    { spawn "neovide" ".config/niri"; }
     // Please choose your own file manager.
