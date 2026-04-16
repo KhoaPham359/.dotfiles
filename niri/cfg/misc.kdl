@@ -15,5 +15,5 @@
     }
 
     hotkey-overlay {
-       skip-at-startup
+        skip-at-startup
     }

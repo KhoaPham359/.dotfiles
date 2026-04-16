@@ -118,7 +118,8 @@ binds {
     Mod+T                               { toggle-column-tabbed-display; }
 
     // ─── Screenshots ───
-    Mod+Shift+S                        { screenshot; }
+    // Mod+Shift+S                        { screenshot show-pointer=false; }
+    Mod+Shift+S                         { spawn-sh "qs -c noctalia-shell ipc call plugin:screen-toolkit annotate"; }
     CTRL+Shift+2                        { screenshot-screen; }
     CTRL+Shift+3                        { screenshot-window; }
 
