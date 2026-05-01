@@ -5,6 +5,9 @@ workspace "4"
 window-rule {
     geometry-corner-radius 20 // Set every window radius to 20
     clip-to-geometry true
+    
+    // Opacity loves this
+    draw-border-with-background false
 }
 
 layer-rule {
@@ -77,7 +80,7 @@ window-rule {
 // Float rule
 window-rule {
     // Eye of GNOME
-    match app-id=r#"^eog$"#
+    match app-id=r#"^org.gnome.eog$"#
     
     match app-id=r#"^mpv$"#
     
@@ -95,9 +98,13 @@ window-rule {
     
     // Resource monitor
     match app-id=r#"^net.nokyan.Resources$"#
+
+    // Morimen
+    match app-id=r#"^steam_app_3052450$"#
     
     match app-id=r#"^qt-sudo$"#
     open-floating true
+
 }
 window-rule {
     match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
@@ -129,4 +136,28 @@ window-rule {
         active-color "#f38ba8"
         inactive-color "#7d0d2d"
     }
+}
+
+// Blur rules
+/* Apps: blur them all without xray for a better look */
+window-rule {
+  background-effect {
+    blur true
+    xray false
+  }
+}
+
+/* Noctalia: blur everywhere without xray for a better look */
+layer-rule {
+  match namespace="^noctalia-(background|launcher-overlay|dock)-.*$"
+  background-effect {
+    xray false
+  }
+}
+
+blur {
+  passes 2        // more passes = stronger blur (default: 3)
+  offset 3.0      // sample distance per pass (default: 3.0)
+  noise 0.03      // grain overlay (default: 0.02)
+  saturation 1.0  // color saturation boost (default: 1.5)
 }

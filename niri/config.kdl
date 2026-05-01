@@ -1,9 +1,12 @@
+include "./cfg/misc.kdl"
 include "./cfg/autostart.kdl"
 include "./cfg/keybinds.kdl"
 include "./cfg/input.kdl"
 include "./cfg/display.kdl"
 include "./cfg/layout.kdl"
 include "./cfg/rules.kdl"
-include "./cfg/misc.kdl"
-include "./noctalia.kdl"
+include optional=true "./noctalia.kdl"
 include "./animations/swipe-window.kdl"
+
+include "./noctalia.kdl"
+
