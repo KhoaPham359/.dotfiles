@@ -13,7 +13,7 @@ window-rule {
 // Opacity rules
 window-rule {
     match is-active=true
-    opacity 0.97
+    opacity 0.96
 }
 window-rule {
     match is-active=false
