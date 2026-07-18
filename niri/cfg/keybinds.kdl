@@ -7,37 +7,58 @@ binds {
     // https://docs.noctalia.dev/getting-started/keybinds/
 
     Mod+Shift+ESCAPE                     { show-hotkey-overlay; }
+    // Mod+Shift+O { toggle-window-rule-opacity; }
 
     // ─── Applications ───
     Mod+Return                          hotkey-overlay-title="Open Terminal: Alacritty" { spawn "kitty"; }
-    Super+Shift+F23           repeat=false    { spawn-sh "qs -c noctalia-shell ipc call launcher toggle";}
+    // Super+Shift+F23           repeat=false    { spawn-sh "qs -c noctalia-shell ipc call launcher toggle";}
+    Super+Shift+F23           repeat=false    {spawn-sh "noctalia msg panel-toggle launcher";}
     Mod+B                               hotkey-overlay-title="Open Browser: firefox" { spawn "zen-browser"; }
     Mod+ALT+L                           hotkey-overlay-title="Lock Screen: noctalia lock" { spawn-sh "qs -c noctalia-shell ipc call lockScreen lock"; }
-    Mod+Shift+Q                        hotkey-overlay-title="Session Menu: noctalia sessionMenu" { spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
-    Mod+V           hotkey-overlay-title="Launch clipboard"                         repeat=false    { spawn-sh "qs -c noctalia-shell ipc call plugin:clipper togglePanel";}
-    Mod+I           hotkey-overlay-title="Settings: open noctalia-shell config"     repeat=false    { spawn-sh "qs -c noctalia-shell ipc call settings toggle";}
+    // Mod+Shift+Q                        hotkey-overlay-title="Session Menu: noctalia sessionMenu" { spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
+    Mod+Shift+Q                        hotkey-overlay-title="Session Menu: noctalia sessionMenu" {spawn-sh "noctalia msg panel-toggle session";}
+    
+    // Mod+V           hotkey-overlay-title="Launch clipboard"                         repeat=false    { spawn-sh "qs -c noctalia-shell ipc call plugin:clipper togglePanel";}
+    Mod+V           hotkey-overlay-title="Launch clipboard"                         repeat=false    { spawn-sh "noctalia msg panel-toggle clipboard"; }
+    // Mod+I           hotkey-overlay-title="Settings: open noctalia-shell config"     repeat=false    { spawn-sh "qs -c noctalia-shell ipc call settings toggle";}
+    Mod+I           hotkey-overlay-title="Settings: open noctalia-shell config"     repeat=false    { spawn-sh "noctalia msg settings-toggle"; }
     Mod+Shift+I     hotkey-overlay-title="Settings: open niri config"               repeat=false    { spawn "neovide" ".config/niri"; }
-    // Please choose your own file manager.
+    // Please choose your own file manager.spawn-sh "noctalia msg settings-toggle";
     Mod+E                               hotkey-overlay-title="File Manager: Nautilus" { spawn "thunar"; }
+    Mod+P repeat=false { spawn-sh "wl-mirror $(niri msg --json focused-output | jq -r .name)"; }
 
     // ─── Audio Controls ───
-    XF86AudioRaiseVolume                allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume increase"; }
-    XF86AudioLowerVolume                allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume decrease"; }
-    XF86AudioMute                       allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume muteOutput"; }
-    XF86AudioMicMute                    allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume muteInput"; }
-    XF86MonBrightnessUp                 allow-when-locked=true { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "brightness" "increase"; }
-    XF86MonBrightnessDown               allow-when-locked=true { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "brightness" "decrease"; }
+    // XF86AudioRaiseVolume                allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume increase"; }
+    // XF86AudioLowerVolume                allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume decrease"; }
+    // XF86AudioMute                       allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume muteOutput"; }
+    // XF86AudioMicMute                    allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume muteInput"; }
+    // XF86MonBrightnessUp                 allow-when-locked=true { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "brightness" "increase"; }
+    // XF86MonBrightnessDown               allow-when-locked=true { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "brightness" "decrease"; }
+    
+    
+    // Audio & Brightness
+    XF86AudioRaiseVolume { spawn-sh "noctalia msg volume-up"; }
+    XF86AudioLowerVolume { spawn-sh "noctalia msg volume-down"; }
+    XF86AudioMute { spawn-sh "noctalia msg volume-mute"; }
+    XF86MonBrightnessUp { spawn-sh "noctalia msg brightness-up"; }
+    XF86MonBrightnessDown { spawn-sh "noctalia msg brightness-down"; }
+    
     // ─── Window Movement and Focus ───
     Mod+Q                               { close-window; }
+    Mod+A {consume-window-into-column;}
 
     Mod+Left                            { focus-column-left; }
     Mod+H                               { focus-column-left; }
     Mod+Right                           { focus-column-right; }
     Mod+L                               { focus-column-right; }
-    Mod+Up                              { focus-window-up; }
-    Mod+K                               { focus-window-up; }
-    Mod+Down                            { focus-window-down; }
-    Mod+J                               { focus-window-down; }
+    // Mod+Up                              { focus-window-up; }
+    // Mod+K                               { focus-window-up; }
+    Mod+Down                            { focus-workspace-down; }
+    Mod+J                               { focus-workspace-down; }
+    Mod+Up                              { focus-workspace-up; }
+    Mod+K                               { focus-workspace-up; }
+    // Mod+Down                            { focus-window-down; }
+    // Mod+J                               { focus-window-down; }
 
     Mod+CTRL+Left                       { move-column-left; }
     Mod+CTRL+H                          { move-column-left; }
@@ -99,7 +120,7 @@ binds {
     Mod+CTRL+8                          { move-column-to-workspace 8; }
     Mod+CTRL+9                          { move-column-to-workspace 9; }
 
-    Mod+TAB                             { focus-workspace-previous; }
+    // Mod+TAB                             { focus-workspace-previous; }
 
     // ─── Layout Controls ───
     Mod+R       { switch-preset-column-width; }
@@ -119,7 +140,8 @@ binds {
 
     // ─── Screenshots ───
     // Mod+Shift+S                        { screenshot show-pointer=false; }
-    Mod+Shift+S                         { spawn-sh "qs -c noctalia-shell ipc call plugin:screen-toolkit annotate"; }
+    // Mod+Shift+S                         { spawn-sh "qs -c noctalia-shell ipc call plugin:screen-toolkit annotate"; }
+    Mod+Shift+S                         {screenshot;}
     CTRL+Shift+2                        { screenshot-screen; }
     CTRL+Shift+3                        { screenshot-window; }
 
@@ -131,5 +153,5 @@ binds {
     // ─── Exit / Power ───
     CTRL+ALT+Delete                     { quit; } // Also quits Niri
     Mod+Shift+P                         { power-off-monitors; } // Turn off screens (useful for OLED or privacy)
-    Mod+O                               repeat=false { toggle-overview; }
+    Mod+grave                               repeat=false { toggle-overview; }
 }

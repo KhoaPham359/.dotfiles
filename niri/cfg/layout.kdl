@@ -1,6 +1,6 @@
 layout {
     gaps 16 // Gap between windows
-    center-focused-column "never" // Don’t auto-center focused column
+    center-focused-column "on-overflow" 
     always-center-single-column
     background-color "transparent" // <- needed for noctalia-shell to set wallpaper
 
@@ -31,5 +31,29 @@ layout {
 overview {
     workspace-shadow {
         off
+    }
+    zoom 0.25
+}
+recent-windows {
+    // off
+    debounce-ms 750
+
+    open-delay-ms 150
+
+    previews {
+        max-height 480
+        max-scale 0.25
+    }
+
+    binds {
+        Alt+Tab         { next-window; }
+        Alt+Shift+Tab   { previous-window; }
+        // Alt+grave       { next-window     filter="app-id"; }
+        // Alt+Shift+grave { previous-window filter="app-id"; }
+        //
+        Mod+Tab         { next-window; }
+        Mod+Shift+Tab   { previous-window; }
+        // Mod+grave       { next-window     filter="app-id"; }
+        // Mod+Shift+grave { previous-window filter="app-id"; }
     }
 }
