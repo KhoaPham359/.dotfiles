@@ -8,7 +8,7 @@
         "height": 16,
         "width": 36,
         "padding": {
-            "top": 1,
+            "top": 1
         }
     },
     "modules": [
@@ -24,6 +24,12 @@
             "type": "os",
             "key": " ╭─ ",
             "keyColor": "green"
+        },
+        {
+            "type": "command",
+            "key": " ├─ ",
+            "keyColor": "green",
+            "text": "birth_install=$(stat -c %W /); current=$(date +%s); days_difference=$(( (current - birth_install) / 86400 )); echo $days_difference days"
         },
         {
             "type": "kernel",
