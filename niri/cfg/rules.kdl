@@ -1,145 +1,21 @@
-workspace "1"
-workspace "2"
-workspace "3"
-workspace "4"
+//# -----------------------------------------------------------------------------
+//# GLOBAL APPEARANCE
+//# -----------------------------------------------------------------------------
+
+window-rule {
+    match is-active=false is-floating=false
+    // exclude app-id=r#"zen$"#
+    opacity 0.85
+}
+
 window-rule {
     geometry-corner-radius 20 // Set every window radius to 20
     clip-to-geometry true
-    
+
     // Opacity loves this
     draw-border-with-background false
 }
 
-// Opacity rules
-window-rule {
-    match is-active=true
-    opacity 0.96
-}
-window-rule {
-    match is-active=false
-    opacity 0.8
-}
-// Specific opacity rules
-window-rule {
-    match app-id=r#"^kitty$"# is-active=true
-    match app-id=r#"^thunar$"# is-active=true
-    opacity 0.88
-}
-window-rule {
-    match app-id=r#"^steam_app"#
-    opacity 1.00
-}
-
-layer-rule {
-    match namespace="^noctalia-wallpaper*"
-    place-within-backdrop true
-}
-
-window-rule {
-    match app-id=r#"^thunar$"# title="^Rename*"
-    open-floating true
-}
-
-
-window-rule {
-    match app-id=r#"zen$"# title="^Picture-in-Picture$"
-    match app-id=r#"librewolf$"# title="^Picture-in-Picture$"
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-    open-floating true
-
-
-
-    match app-id=r#"^org-tlauncher-tlauncher-rmo-TLauncher$"#
-}
-
-window-rule {
-    match app-id=r#"^neovide$"#
-    match app-id=r#"^jetbrains-idea$"#
-    match app-id=r#"^codium$"#
-    match app-id=r#"^code$"#
-    match app-id=r#"^Eclipse$"#
-    
-    open-on-workspace "1"
-    default-column-width {proportion 0.9;}
-}
-
-window-rule {
-    match app-id=r#"zen$"#
-    match app-id=r#"firefox$"#
-    match app-id=r#"chromium$"#
-    match app-id=r#"librewolf$"#
-    match app-id=r#"google-chrome$"#
-
-    open-on-workspace "2"
-    // default-column-width {proportion 0.9;}
-    open-maximized true
-}
-
-// global window rule
-window-rule {
-    open-focused true
-}
-// Media
-window-rule {
-    match app-id=r#"^spotify$"#
-    open-floating true
-    default-column-width {proportion 0.66667;}
-}
-window-rule {
-    match app-id=r#"^com.obsproject.Studio$"#
-    match app-id=r#"^vesktop$"#
-    open-on-workspace "4"
-}
-
-window-rule {
-    match app-id=r#"^kitty$"#
-    open-on-workspace "1"
-    default-column-width {proportion 0.5;}
-}
-
-// Float rule
-window-rule {
-    // Eye of GNOME
-    match app-id=r#"^org.gnome.eog$"#
-    
-    match app-id=r#"^mpv$"#
-    
-    // Kruder
-    match app-id=r#"^org.kde.kruler$"#
-    
-    // Calculator
-    match app-id=r#"^org.gnome.Calculator"#
-
-    // Video downloader
-    match app-id=r#"^com.github.unrud.VideoDownloader$"#
-
-    // Network editor
-    match app-id=r#"^nm-connection-editor$"#
-    
-    // Resource monitor
-    match app-id=r#"^net.nokyan.Resources$"#
-
-    // Morimen
-    match app-id=r#"^steam_app_3052450$"#
-    
-    match app-id=r#"^qt-sudo$"#
-    open-floating true
-
-}
-window-rule {
-    match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
-    default-floating-position x=10 y=10 relative-to="bottom-right"
-}
-window-rule {
-    match app-id="steam" title=r#"^Sign in to Steam$"#
-    default-floating-position x=400 y=250 relative-to="top-left"
-}
-
-window-rule {
-    match app-id="org.kde.polkit-kde-authentication-agent-1"
-    block-out-from "screen-capture"
-}
-// Indicate screencasted windows with red colors.
 window-rule {
     match is-window-cast-target=true
     focus-ring {
@@ -158,26 +34,205 @@ window-rule {
     }
 }
 
-// Blur rules
-/* Apps: blur them all without xray for a better look */
 window-rule {
-  background-effect {
-    blur true
-    xray true
-  }
+    background-effect {
+        blur true
+        xray false
+    }
 }
 
-/* Noctalia: blur everywhere without xray for a better look */
+/*
+Noctalia
+Disable xray on all our surfaces so it looks more realistic.
+No need to set blur to 'true' here, it's automatic.
+*/
 layer-rule {
-  match namespace="^noctalia-(background|launcher-overlay|dock)-.*$"
-  background-effect {
-    xray false
-  }
+    match namespace="^noctalia-(bar-[^\"]+|notification|dock|panel)$"
+    background-effect {
+        xray false
+        //blur false
+    }
 }
 
+/* You can also fine-tune the blur effect globally. */
 blur {
-  passes 2        // more passes = stronger blur (default: 3)
-  offset 3.0      // sample distance per pass (default: 3.0)
-  noise 0.03      // grain overlay (default: 0.02)
-  saturation 1.0  // color saturation boost (default: 1.5)
+    passes 2        // more passes = stronger blur (default: 3)
+    offset 3.0      // sample distance per pass (default: 3.0)
+    noise 0.03      // grain overlay (default: 0.02)
+    saturation 1.0  // color saturation boost (default: 1.5)
+}
+
+//# -----------------------------------------------------------------------------
+//# WORKSPACES
+// # -----------------------------------------------------------------------------
+
+workspace "1"
+workspace "2"
+workspace "3"
+workspace "4"
+
+
+// # -----------------------------------------------------------------------------
+//# GLOBAL BEHAVIOR
+//# -----------------------------------------------------------------------------
+
+window-rule {
+    open-focused true
+}
+
+//# -----------------------------------------------------------------------------
+//# DEVELOPMENT
+//# -----------------------------------------------------------------------------
+
+window-rule {
+    match app-id=r#"^kitty$"#
+    open-on-workspace "1"
+    default-column-width {
+        proportion 0.5;
+    }
+}
+
+window-rule {
+    match app-id=r#"^neovide$"#
+    match app-id=r#"^jetbrains-idea$"#
+    match app-id=r#"^codium$"#
+    match app-id=r#"^code$"#
+    match app-id=r#"^Eclipse$"#
+
+    open-on-workspace "1"
+
+    default-column-width {
+        proportion 0.9;
+    }
+}
+
+//# -----------------------------------------------------------------------------
+//# BROWSERS
+//# -----------------------------------------------------------------------------
+
+window-rule {
+    match app-id=r#"zen$"#
+    match app-id=r#"firefox$"#
+    match app-id=r#"chromium$"#
+    match app-id=r#"librewolf$"#
+    match app-id=r#"google-chrome$"#
+
+    open-on-workspace "2"
+    open-maximized true
+}
+
+window-rule {
+    match app-id=r#"zen$"# title="^Picture-in-Picture$"
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match app-id=r#"librewolf$"# title="^Picture-in-Picture$"
+
+    open-floating true
+}
+
+//# -----------------------------------------------------------------------------
+//# COMMUNICATION
+//# -----------------------------------------------------------------------------
+
+window-rule {
+    match app-id=r#"^spotify$"#
+
+    open-floating true
+
+    default-column-width {
+        proportion 0.66667;
+    }
+}
+
+window-rule {
+    match app-id=r#"^vesktop$"#
+    match app-id=r#"^com.obsproject.Studio$"#
+
+    open-on-workspace "4"
+    open-maximized true
+}
+
+window-rule {
+    match app-id=r#"^com.obsproject.Studio$"#
+    
+    block-out-from "screen-capture"
+}
+
+//# -----------------------------------------------------------------------------
+//# GAMING
+//# -----------------------------------------------------------------------------
+
+window-rule {
+    match app-id=r#"^steam_app"#
+    open-on-workspace "3"
+}
+
+window-rule {
+    match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+    default-floating-position x=10 y=10 relative-to="bottom-right"
+}
+
+window-rule {
+    match app-id="steam" title=r#"^Sign in to Steam$"#
+    default-floating-position x=400 y=250 relative-to="top-left"
+}
+
+window-rule {
+    match app-id=r#"^org-tlauncher-tlauncher-rmo-TLauncher$"#
+    match app-id=r#"^steam_app_3052450$"#
+
+    open-floating true
+}
+
+//# -----------------------------------------------------------------------------
+//# FLOATING WINDOWS
+//# -----------------------------------------------------------------------------
+
+//# Media
+window-rule {
+    match app-id=r#"^org.gnome.eog$"#
+    match app-id=r#"^com.gabm.satty$"#
+    match app-id=r#"^mpv$"#
+    match app-id="io.github.celluloid_player.Celluloid"
+
+    open-floating true
+}
+
+//# Utilities
+window-rule {
+    match app-id=r#"^org.gnome.Calculator"#
+    match app-id=r#"^org.kde.kruler$"#
+    match app-id=r#"^nm-connection-editor$"#
+    match app-id=r#"^qt-sudo$"#
+
+    open-floating true
+}
+
+//# Misc
+window-rule {
+    match app-id=r#"^com.github.unrud.VideoDownloader$"#
+    match app-id=r#"^net.nokyan.Resources$"#
+    match app-id=r#"^thunar$"# title="^Rename*"
+
+    open-floating true
+}
+
+//# -----------------------------------------------------------------------------
+//# Miscellaneous
+//# -----------------------------------------------------------------------------
+
+window-rule {
+    match app-id="dev.noctalia.Noctalia.Settings"
+    open-floating true
+    default-column-width { fixed 1080; }
+    default-window-height { fixed 910; }
+}
+
+layer-rule {
+    match namespace="^noctalia-wallpaper*"
+    place-within-backdrop true
+}
+
+window-rule {
+    match app-id="org.kde.polkit-kde-authentication-agent-1"
+    block-out-from "screen-capture"
 }
