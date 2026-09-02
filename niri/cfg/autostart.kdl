@@ -3,6 +3,9 @@
 
 // spawn-sh-at-startup "/usr/lib/polkit-kde-authentication-agent-1 &" // Polkit
 // spawn-sh-at-startup "qs -c noctalia-shell"
+
+spawn-at-startup "xhost" "+SI:localuser:root" // need xorg-xhost installed
+
 spawn-at-startup "noctalia"
 spawn-sh-at-startup "wl-paste --watch cliphist store"
 spawn-sh-at-startup "fcitx5"

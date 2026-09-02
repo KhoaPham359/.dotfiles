@@ -22,7 +22,7 @@ input {
         // natural-scroll
         accel-speed 0.65
         accel-profile "flat"
-        scroll-factor 1.2
+        // scroll-factor 1.2
         // scroll-method "no-scroll"
     }
     focus-follows-mouse // Automatically focus windows under the mouse pointer

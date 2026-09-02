@@ -25,7 +25,8 @@ binds {
     Mod+Shift+I     hotkey-overlay-title="Settings: open niri config"               repeat=false    { spawn "neovide" ".config/niri"; }
     // Please choose your own file manager.spawn-sh "noctalia msg settings-toggle";
     Mod+E                               hotkey-overlay-title="File Manager: Nautilus" { spawn "thunar"; }
-    Mod+P repeat=false { spawn-sh "wl-mirror $(niri msg --json focused-output | jq -r .name)"; }
+    // Mod+P repeat=false { spawn-sh "wl-mirror $(niri msg --json focused-output | jq -r .name)"; }
+    Mod+P repeat=false { spawn-sh "noctalia msg panel-toggle elijaharch/wl-screen-mirror:controls"; }
 
     // ─── Audio Controls ───
     // XF86AudioRaiseVolume                allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume increase"; }
@@ -141,7 +142,7 @@ binds {
     // ─── Screenshots ───
     // Mod+Shift+S                        { screenshot show-pointer=false; }
     // Mod+Shift+S                         { spawn-sh "qs -c noctalia-shell ipc call plugin:screen-toolkit annotate"; }
-    Mod+Shift+S                         {screenshot;}
+    Mod+Shift+S                         {spawn-sh "noctalia msg screenshot-region";}
     CTRL+Shift+2                        { screenshot-screen; }
     CTRL+Shift+3                        { screenshot-window; }
 

@@ -5,8 +5,6 @@ include "./cfg/input.kdl"
 include "./cfg/display.kdl"
 include "./cfg/layout.kdl"
 include "./cfg/rules.kdl"
-include optional=true "./noctalia.kdl"
 include "./animations/celestia.kdl"
 
-include "./noctalia.kdl"
 
