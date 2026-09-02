@@ -1,0 +1,15 @@
+[workspaces]
+back_and_forth = false
+empty_above = false
+
+# Overview -------------------------------------------------------------------
+
+[overview]
+zoom = 0.25                     # 0.1-0.75
+# Pinned windows stay hidden until overview closes; visible scratchpads are dismissed.
+# background_blur = true        # blur the wallpaper while the overview is open
+# background_tint = "#10101430"
+# workspace_background = "#00000044" # set alpha to FF for an opaque background
+shortcuts = false
+# shortcut_keys = "1234567890" # favorite keys in preference order
+# badge_color = "#7AA3FFFF"   # defaults to colors.accent_primary

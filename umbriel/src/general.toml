@@ -1,0 +1,48 @@
+[general]
+autostart = ["noctalia",]
+mod_key = "Super"
+
+xwayland = true                # requires restart to change
+show_cheatsheet = false         # show keybinds overlay on startup
+focus_on_activate = false      # unsolicited requests cannot add focus; trusted launches may still focus
+honor_restored_maximize = true # let apps restore their saved maximized state
+
+# Applied only at session startup. Native sessions also publish these values to
+# newly started systemd session services and applications they launch. D-Bus
+# receives only graphical connection variables. Nested sessions do not modify the
+# host session environment. Without systemd, direct Umbriel children still inherit
+# the values. Relaunch applications that were already running.
+[environment]
+# GTK_THEME = "Adwaita:dark"
+# QT_QPA_PLATFORMTHEME = "qt5ct"
+ELECTRON_OZONE_PLATFORM_HINT = "auto"
+QT_QPA_PLATFORM = "wayland"
+QT_WAYLAND_DISABLE_WINDOWDECORATION = "1"
+QT_QPA_PLATFORMTHEME = "gtk3"
+# Defines commands that are executed when the laptop lid is closed or opened.
+# [events]
+# lid_close = "notify-send 'The laptop lid is closed!'"
+# lid_open = "notify-send 'The laptop lid is open!'"
+
+
+# Hot corners ---------------------------------------------------------------
+
+[hot_corners.top_left]
+enabled = true
+delay_ms = 200                # 0-10000, 0 activates immediately
+action = "overview-open"
+
+[hot_corners.top_right]
+enabled = false
+delay_ms = 500
+action = "overview-close"
+
+[hot_corners.bottom_left]
+enabled = false
+delay_ms = 500
+action = "overview-toggle"
+
+[hot_corners.bottom_right]
+enabled = false
+delay_ms = 500
+action = "spawn:notify-send 'Bottom right'"

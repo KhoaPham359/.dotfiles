@@ -1,0 +1,15 @@
+# [include] merges extra files into this one. Included files are parsed first,
+# in list order (later files override earlier ones), then everything in this
+# file overrides all of them. That is why Noctalia's dynamic theming can render
+# its palette into a separate noctalia.toml and still let you override the
+# generated colors here.
+[include]
+files = [
+  "src/general.toml",
+  "src/io.toml",
+  "src/keybinds.toml",
+  "src/appearance.toml",
+  "src/workspaces.toml",
+  "src/rules.toml",
+  "noctalia.toml",
+]
