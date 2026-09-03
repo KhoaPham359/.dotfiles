@@ -7,6 +7,7 @@
 "Mod+W" = "window-toggle-floating"
 "Mod+Shift+T" = "window-focus-switch-floating"
 "Mod+P" = "window-toggle-pinned"
+"Mod+Shift+P" = "spawn:noctalia msg panel-toggle elijaharch/wl-screen-mirror:controls"
 "Mod+M" = "window-toggle-maximize-to-edges"
 "Mod+Q" = "window-close"
 
