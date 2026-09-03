@@ -21,7 +21,8 @@ default_size = [800, 600]
 match.title = "^(Picture-in-Picture|Picture in picture)$"
 default_floating = true
 default_maximize = false
-default_position = { x = 20, y = 20, anchor = "bottom_right" }
+default_pinned = true
+# default_position = { x = 20, y = 20, anchor = "bottom_right" }
 
 # [[window_rule]]
 # match.is_focused = false
