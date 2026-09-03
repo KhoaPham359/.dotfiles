@@ -33,7 +33,7 @@ match.app_id = "^(neovide|cursor|com.anthropic.Claude|kitty|code)$"
 default_workspace = 1
 
 [[window_rule]]
-match.app_id = "^(zen|firefox)$"
+match.app_id = "^(zen|firefox|brave-browser)$"
 default_workspace = 2
 
 [[window_rule]]
